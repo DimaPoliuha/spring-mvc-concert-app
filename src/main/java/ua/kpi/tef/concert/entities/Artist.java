@@ -1,9 +1,10 @@
-package ua.kpi.tef.concert.domain;
+package ua.kpi.tef.concert.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Artist {
@@ -36,5 +37,18 @@ public class Artist {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Artist)) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(id, artist.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name + id.toString());
     }
 }

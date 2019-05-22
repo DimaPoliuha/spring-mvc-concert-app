@@ -12,22 +12,22 @@
 
 <body>
 <div class="container mt-5">
-    <h2 class="text-center">Artist editor</h2>
+    <h2 class="text-center">Pause editor</h2>
 
     <div class="collapse show" id="collapseExample">
         <div class="form-group mt-3">
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="text" class="form-control"
-                           value="{{name}}" name="name" placeholder="Enter name" />
-                </div>
+            <form method="post" action="/pause/pause-update/" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" class="form-control"
                            value="{{type}}" name="type" placeholder="Enter type" />
                 </div>
+                <div class="form-group">
+                    <input type="number" class="form-control"
+                           value="{{duration}}" name="duration" placeholder="Enter duration" />
+                </div>
                 <input type="hidden" name="id" value="{{id}}" />
                 <div class="form-group">
-                    <button type="submit" class="btn btn-outline-success">Save artist</button>
+                    <button type="submit" class="btn btn-outline-success">Save pause</button>
                 </div>
             </form>
         </div>
