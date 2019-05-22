@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ArtistRepo extends CrudRepository<Artist, Integer> {
     List<Artist> findByType(String type);
+    Artist findById(int id);
+    void deleteArtistById(int id);
 }

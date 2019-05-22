@@ -42,7 +42,7 @@ public class AppController {
     }
 
     @PostMapping
-    public String add(@RequestParam String name, @RequestParam String type, Map<String, Object> model){
+    public String add(@RequestParam String name, @RequestParam String type){
         Artist artist = new Artist(name, type);
 
         artistRepo.save(artist);
@@ -52,9 +52,16 @@ public class AppController {
 
     @GetMapping("/artist-edit/")
     public String editArtist(@RequestParam int id, Model model){
-        Artist artist = artistRepo.findById(id).get();
+        Artist artist = artistRepo.findById(id);
+        model.addAttribute("id", id);
         model.addAttribute("name", artist.getName());
         model.addAttribute("type", artist.getType());
         return "messageEdit";
+    }
+
+    @GetMapping("/artist-delete/")
+    public String deleteArtist(@RequestParam int id){
+        artistRepo.delete(artistRepo.findById(id));
+        return "redirect:/";
     }
 }
