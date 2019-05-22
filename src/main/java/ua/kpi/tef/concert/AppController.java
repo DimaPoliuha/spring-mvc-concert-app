@@ -1,5 +1,6 @@
 package ua.kpi.tef.concert;
 
+import antlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +63,15 @@ public class AppController {
     @GetMapping("/artist-delete/")
     public String deleteArtist(@RequestParam int id){
         artistRepo.delete(artistRepo.findById(id));
+        return "redirect:/";
+    }
+
+    @PostMapping("/artist-edit/")
+    public String updateArtist(@RequestParam int id, @RequestParam String name, @RequestParam String type){
+        Artist artist = artistRepo.findById(id);
+        artist.setName(name);
+        artist.setType(type);
+        artistRepo.save(artist);
         return "redirect:/";
     }
 }
